@@ -1,0 +1,51 @@
+<main class="container">
+  <header>
+    <h1>Meus alertas</h1>
+    <div class="acoes">
+      <a routerLink="/alertas/novo" class="btn primario">+ Novo alerta</a>
+      <button class="btn" (click)="sair()">Sair</button>
+    </div>
+  </header>
+
+  @if (erro()) {
+    <p class="erro">{{ erro() }}</p>
+  }
+
+  @if (carregando()) {
+    <p class="info">Carregando...</p>
+  } @else {
+    <div class="tabela-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Moeda</th>
+            <th>Preço alvo</th>
+            <th>Direção</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (alerta of alertas(); track alerta.id) {
+            <tr>
+              <td class="moeda">{{ alerta.moeda }}</td>
+              <td>{{ alerta.precoAlvo | number: '1.2-2' }}</td>
+              <td>
+                <span class="tag" [class.acima]="alerta.direcao === 'ACIMA'">
+                  {{ alerta.direcao === 'ACIMA' ? '▲ Acima' : '▼ Abaixo' }}
+                </span>
+              </td>
+              <td class="botoes">
+                <a [routerLink]="['/alertas', alerta.id, 'editar']" class="btn">Editar</a>
+                <button class="btn perigo" (click)="excluir(alerta)">Excluir</button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4" class="info">Nenhum alerta cadastrado ainda.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</main>
