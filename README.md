@@ -1,59 +1,56 @@
-# CryptoAlertAngular
+# Crypto Alert — Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+Front-end em Angular para a [crypto-alert-api](https://github.com/gladyson30/crypto-alert-api), uma API em Spring Boot que monitora preços de criptomoedas e avisa o usuário por e-mail quando o preço atinge o valor definido.
 
-## Development server
+## Funcionalidades
 
-To start a local development server, run:
+- Cadastro e login de usuários com autenticação JWT
+- CRUD de alertas de preço (moeda, preço alvo e direção: acima ou abaixo)
+- Consulta de cotação em tempo real, em BRL e USD
+- Rotas protegidas por guard e envio automático do token por interceptor
+- Validação de formulários e mensagens de erro de acordo com o status HTTP
+
+## Tecnologias
+
+- Angular 22 (componentes standalone, signals e nova sintaxe de controle de fluxo)
+- TypeScript
+- Reactive Forms
+- RxJS e HttpClient
+
+## Como funciona a integração
+
+1. O usuário faz login e a API devolve um token JWT, que fica salvo no navegador.
+2. Um interceptor adiciona o token (`Authorization: Bearer ...`) em todas as requisições protegidas.
+3. Um guard impede o acesso às telas de alertas sem login e, se o token expirar, o usuário é deslogado.
+4. No backend, um scheduler verifica os alertas periodicamente e publica os que foram atingidos em um tópico Kafka, que dispara o envio do e-mail.
+
+## Como rodar
+
+**Pré-requisitos:** Node.js 20+, Angular CLI e a [crypto-alert-api](https://github.com/gladyson30/crypto-alert-api) rodando em `http://localhost:8080`.
 
 ```bash
+git clone https://github.com/gladyson30/crypto-alert-angular.git
+cd crypto-alert-angular
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse `http://localhost:4200`.
 
-## Code scaffolding
+A URL da API pode ser alterada em `src/environments/environment.ts`.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Estrutura
 
-```bash
-ng generate component component-name
+```
+src/app/
+├── components/    componentes reutilizáveis (consulta de cotação)
+├── guards/        proteção das rotas autenticadas
+├── interceptors/  envio do token JWT e tratamento de sessão expirada
+├── models/        interfaces que espelham os DTOs da API
+├── pages/         login, cadastro, lista e formulário de alertas
+└── services/      comunicação com a API
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Autor
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Gladyson Gabriel — [GitHub](https://github.com/gladyson30)
