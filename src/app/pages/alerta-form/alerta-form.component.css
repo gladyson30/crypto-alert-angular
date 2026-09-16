@@ -1,0 +1,45 @@
+.container { display: flex; justify-content: center; padding: 2rem 1rem; }
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+  background: #1e293b;
+  border-radius: 12px;
+  color: #f8fafc;
+}
+
+h1 { margin: 0 0 1rem; }
+label, .label { color: #cbd5e1; font-size: 0.9rem; margin-top: 0.5rem; }
+
+input[type="text"], input[type="number"] {
+  padding: 0.7rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+input:focus { outline: 2px solid #f59e0b; border-color: transparent; }
+
+.direcoes { display: flex; flex-wrap: wrap; gap: 1rem; }
+.opcao { display: flex; align-items: center; gap: 0.4rem; margin: 0; color: #f8fafc; cursor: pointer; }
+
+.botoes { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem; }
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: transparent;
+  color: #f8fafc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn.primario { background: #f59e0b; border-color: #f59e0b; color: #0f172a; font-weight: bold; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.erro-campo, .erro { color: #f87171; }

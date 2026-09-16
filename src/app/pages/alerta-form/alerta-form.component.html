@@ -1,0 +1,47 @@
+<main class="container">
+  <form class="card" [formGroup]="form" (ngSubmit)="salvar()">
+    <h1>{{ editando ? 'Editar alerta' : 'Novo alerta' }}</h1>
+
+    <label for="moeda">Moeda</label>
+    <input id="moeda" type="text" formControlName="moeda" list="moedas" placeholder="bitcoin" />
+    <datalist id="moedas">
+      <option value="bitcoin"></option>
+      <option value="ethereum"></option>
+      <option value="solana"></option>
+      <option value="ripple"></option>
+      <option value="cardano"></option>
+    </datalist>
+    @if (form.controls.moeda.touched && form.controls.moeda.invalid) {
+      <small class="erro-campo">Use o id da CoinGecko em minúsculas, ex.: bitcoin.</small>
+    }
+
+    <label for="precoAlvo">Preço alvo (R$)</label>
+    <input id="precoAlvo" type="number" step="any" formControlName="precoAlvo" />
+    @if (form.controls.precoAlvo.touched && form.controls.precoAlvo.invalid) {
+      <small class="erro-campo">Informe um preço maior que zero.</small>
+    }
+
+    <span class="label">Avisar quando o preço ficar</span>
+    <div class="direcoes">
+      <label class="opcao">
+        <input type="radio" formControlName="direcao" value="ACIMA" />
+        ▲ Acima do alvo
+      </label>
+      <label class="opcao">
+        <input type="radio" formControlName="direcao" value="ABAIXO" />
+        ▼ Abaixo do alvo
+      </label>
+    </div>
+
+    @if (erro()) {
+      <p class="erro">{{ erro() }}</p>
+    }
+
+    <div class="botoes">
+      <a routerLink="/alertas" class="btn">Cancelar</a>
+      <button type="submit" class="btn primario" [disabled]="salvando()">
+        {{ salvando() ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </form>
+</main>
