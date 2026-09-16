@@ -1,0 +1,47 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+  background: #1e293b;
+  border-radius: 12px;
+}
+
+h1 { margin: 0; color: #f8fafc; }
+.subtitulo { margin: 0 0 1rem; color: #94a3b8; }
+label { color: #cbd5e1; font-size: 0.9rem; margin-top: 0.5rem; }
+
+input {
+  padding: 0.7rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+input:focus { outline: 2px solid #f59e0b; border-color: transparent; }
+
+button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: #0f172a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+.erro-campo { color: #f87171; }
+.erro { color: #f87171; text-align: center; }

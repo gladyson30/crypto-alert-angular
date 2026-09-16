@@ -1,0 +1,26 @@
+<main class="container">
+  <form class="card" [formGroup]="form" (ngSubmit)="entrar()">
+    <h1>Crypto Alert</h1>
+    <p class="subtitulo">Entre para gerenciar seus alertas</p>
+
+    <label for="email">E-mail</label>
+    <input id="email" type="email" formControlName="email" placeholder="voce@email.com" />
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <small class="erro-campo">Informe um e-mail válido.</small>
+    }
+
+    <label for="senha">Senha</label>
+    <input id="senha" type="password" formControlName="senha" placeholder="••••••••" />
+    @if (form.controls.senha.touched && form.controls.senha.invalid) {
+      <small class="erro-campo">A senha deve ter entre 8 e 16 caracteres.</small>
+    }
+
+    @if (erro()) {
+      <p class="erro">{{ erro() }}</p>
+    }
+
+    <button type="submit" [disabled]="carregando()">
+      {{ carregando() ? 'Entrando...' : 'Entrar' }}
+    </button>
+  </form>
+</main>
