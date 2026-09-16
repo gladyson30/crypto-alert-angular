@@ -6,14 +6,15 @@ import { AuthService } from '../services/auth.service';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const token = authService.getToken();
+  const rotaPublica = req.url.includes('/usuarios');
 
-  const requisicao = token
+  const requisicao = token && !rotaPublica
     ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
     : req;
 
   return next(requisicao).pipe(
     catchError((erro: HttpErrorResponse) => {
-      if (erro.status === 401 || erro.status === 403) {
+      if ((erro.status === 401 || erro.status === 403) && token && !rotaPublica) {
         authService.logout();
       }
       return throwError(() => erro);
