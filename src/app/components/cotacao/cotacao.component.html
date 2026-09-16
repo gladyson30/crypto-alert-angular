@@ -1,0 +1,29 @@
+<section class="cotacao">
+  <h2>Consultar cotação</h2>
+
+  <form class="busca" (ngSubmit)="buscar()">
+    <input type="text" name="moeda" [(ngModel)]="moeda" list="moedas-cotacao" placeholder="bitcoin" />
+    <datalist id="moedas-cotacao">
+      <option value="bitcoin"></option>
+      <option value="ethereum"></option>
+      <option value="solana"></option>
+      <option value="ripple"></option>
+      <option value="cardano"></option>
+    </datalist>
+    <button type="submit" [disabled]="carregando()">
+      {{ carregando() ? 'Buscando...' : 'Buscar' }}
+    </button>
+  </form>
+
+  @if (erro()) {
+    <p class="erro">{{ erro() }}</p>
+  }
+
+  @if (cotacao(); as c) {
+    <div class="resultado">
+      <span class="nome">{{ moedaConsultada() }}</span>
+      <span>{{ c.brl | currency: 'BRL' }}</span>
+      <span class="usd">{{ c.usd | currency: 'USD' }}</span>
+    </div>
+  }
+</section>

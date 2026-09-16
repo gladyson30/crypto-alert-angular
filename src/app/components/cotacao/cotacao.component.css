@@ -1,0 +1,39 @@
+.cotacao { margin-bottom: 1.5rem; padding: 1.25rem; background: #1e293b; border-radius: 12px; }
+h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+.busca { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+input {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.6rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: #0f172a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled { opacity: 0.6; }
+
+.resultado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: baseline;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.nome { text-transform: capitalize; color: #f59e0b; }
+.usd { color: #94a3b8; font-size: 1rem; }
+.erro { color: #f87171; }

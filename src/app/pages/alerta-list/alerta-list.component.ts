@@ -4,10 +4,11 @@ import { RouterLink } from '@angular/router';
 import { Alerta } from '../../models/alerta.model';
 import { AlertaService } from '../../services/alerta.service';
 import { AuthService } from '../../services/auth.service';
+import { CotacaoComponent } from '../../components/cotacao/cotacao.component';
 
 @Component({
   selector: 'app-alerta-list',
-  imports: [RouterLink, DecimalPipe],
+  imports: [RouterLink, DecimalPipe, CotacaoComponent],
   templateUrl: './alerta-list.component.html',
   styleUrl: './alerta-list.component.css'
 })
