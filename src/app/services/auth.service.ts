@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { LoginRequest } from '../models/auth.model';
+import { CadastroRequest, LoginRequest } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,6 +15,10 @@ export class AuthService {
     return this.http
       .post(`${environment.apiUrl}/usuarios/login`, dados, { responseType: 'text' })
       .pipe(tap(token => localStorage.setItem(this.TOKEN_KEY, token)));
+  }
+
+  cadastrar(dados: CadastroRequest): Observable<string> {
+    return this.http.post(`${environment.apiUrl}/usuarios`, dados, { responseType: 'text' });
   }
 
   logout(): void {

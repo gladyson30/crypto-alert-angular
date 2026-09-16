@@ -45,3 +45,7 @@ button {
 button:disabled { opacity: 0.6; cursor: not-allowed; }
 .erro-campo { color: #f87171; }
 .erro { color: #f87171; text-align: center; }
+
+.sucesso { color: #4ade80; text-align: center; }
+.link { margin: 1rem 0 0; text-align: center; color: #94a3b8; }
+.link a { color: #f59e0b; }

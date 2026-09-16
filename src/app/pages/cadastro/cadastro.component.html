@@ -1,10 +1,12 @@
 <main class="container">
-  <form class="card" [formGroup]="form" (ngSubmit)="entrar()">
-    <h1>Crypto Alert</h1>
-    <p class="subtitulo">Entre para gerenciar seus alertas</p>
+  <form class="card" [formGroup]="form" (ngSubmit)="cadastrar()">
+    <h1>Criar conta</h1>
+    <p class="subtitulo">Cadastre-se para criar alertas</p>
 
-    @if (cadastroOk) {
-      <p class="sucesso">Conta criada! Faça login para continuar.</p>
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" formControlName="nome" placeholder="Seu nome" />
+    @if (form.controls.nome.touched && form.controls.nome.invalid) {
+      <small class="erro-campo">Informe seu nome.</small>
     }
 
     <label for="email">E-mail</label>
@@ -14,7 +16,7 @@
     }
 
     <label for="senha">Senha</label>
-    <input id="senha" type="password" formControlName="senha" placeholder="••••••••" />
+    <input id="senha" type="password" formControlName="senha" placeholder="8 a 16 caracteres" />
     @if (form.controls.senha.touched && form.controls.senha.invalid) {
       <small class="erro-campo">A senha deve ter entre 8 e 16 caracteres.</small>
     }
@@ -24,9 +26,9 @@
     }
 
     <button type="submit" [disabled]="carregando()">
-      {{ carregando() ? 'Entrando...' : 'Entrar' }}
+      {{ carregando() ? 'Cadastrando...' : 'Cadastrar' }}
     </button>
 
-    <p class="link">Não tem conta? <a routerLink="/cadastro">Cadastre-se</a></p>
+    <p class="link">Já tem conta? <a routerLink="/login">Entrar</a></p>
   </form>
 </main>
